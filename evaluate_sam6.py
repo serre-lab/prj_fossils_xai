@@ -434,7 +434,7 @@ def evaluate(model, test_ds, batch_size=10, prob_augmentation=0.9, val_ds=None):
 
             if b > 0:
               activations_and_patches = np.load(
-                  "./activations/activations_patches_resnet2.npz"
+                  "./activations/activations_patches_resnet3.npz"
               )
               prev_activations = activations_and_patches["activations"]
               prev_patches = activations_and_patches["patches"]
@@ -447,7 +447,7 @@ def evaluate(model, test_ds, batch_size=10, prob_augmentation=0.9, val_ds=None):
               image_activations = np.concatenate([prev_image_activations, image_activations])
               final_labels = np.concatenate([prev_class_labels, final_labels])
             np.savez(
-                    "./activations/activations_patches_resnet2.npz",
+                    "./activations/activations_patches_resnet3.npz",
                     **{"activations": activations, "patches": patches, 'labels': patch_labels, 'image_activations': image_activations, 'class_labels':final_labels},
                     # **{"activations": activations, "patches": patches, 'labels':patch_labels}
                 )
@@ -469,12 +469,25 @@ def evaluate(model, test_ds, batch_size=10, prob_augmentation=0.9, val_ds=None):
                 # importances = craft.estimate_importance(
                 #     # final_images, class_labels=final_labels
                 # )
-                importances = craft.new_estimate_importance(
-                   image_activations, class_labels = final_labels
-                )
+                n_image_activations = image_activations.shape[0]
+                all_importances = []
+                for i in range(0, n_image_activations, 4000):
+                    if i+4000>n_image_activations:
+                       curr_image_activations = image_activations[i:]
+                       curr_final_labels = final_labels[i:]
+                    else:
+                       curr_image_activations = image_activations[i:i+4000]
+                       curr_final_labels = final_labels[i:i+4000]
+                    
+                    curr_importances = craft.new_estimate_importance(
+                    curr_image_activations, class_labels = curr_final_labels
+                    )
+
+                    all_importances.append(curr_importances)
 
                 # images_u = craft.transform(images_fossils_correct)
-
+                all_importances = np.array(all_importances)
+                importances = np.mean(all_importances, axis = 0)
                 most_important_concepts = helpers.plot_new_histogram(
                     importances, histogram_dir, b, 50
                 )
@@ -492,7 +505,7 @@ def evaluate(model, test_ds, batch_size=10, prob_augmentation=0.9, val_ds=None):
 
 if __name__ == "__main__":
     # model_path = "./models/BEITmodel-9.h5"
-    model_path = "./models/resnet_model-9.h5"
+    model_path = "./models/resnet-1.h5"
     csv_path = "./csv/fossils.csv"
     fossils_data_dir = (
         "/cifs/data/tserre_lrs/projects/prj_fossils/data/2024/Florissant_Fossil_v2.0"

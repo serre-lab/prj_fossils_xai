@@ -209,6 +209,7 @@ def get_resnet(base_arch='Nasnet',weights='imagenet',input_shape=(600,600,3),cla
   return base_model, model
 
 def  get_resnet_model(model_path):
+    import ipdb;ipdb.set_trace()
     cce = tf.keras.losses.categorical_crossentropy
     model = keras.models.load_model(model_path, custom_objects = {"cce":cce})
     g = keras.Model(model.input, model.layers[2].output)

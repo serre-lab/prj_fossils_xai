@@ -6,13 +6,14 @@ import matplotlib.pyplot as plt
 import xplique
 from xplique.features_visualizations import Objective, optimize
 
-# model_path = "./models/resnet_model-8.h5"
-model_path = "./models/BEITmodel-9.h5"
+import ipdb;ipdb.set_trace()
+model_path = "./models/resnet-1.h5"
+# model_path = "./models/BEITmodel-9.h5"
 # base_model, model = helpers.get_resnet_model('Resnet101')
 # model.load_weights(model_path)
 cce = tf.keras.losses.categorical_crossentropy
-# model = tf.keras.models.load_model(model_path, custom_objects={"cce": cce})
-model,_,_ = helpers.get_model(model_path)
+model = tf.keras.models.load_model(model_path, custom_objects={"cce": cce})
+# model,_,_ = helpers.get_model(model_path)
 # model = tf.keras.models.load_model(model_path)
 # import ipdb;ipdb.set_trace()
 
@@ -45,4 +46,4 @@ for i in range(len(classes)):
   plt.imshow(imgs[0][i])
   plt.title(classes[i][1])
   plt.axis('off')
-  plt.savefig('feature_vis_beit2.png')
+  plt.savefig('feature_vis_resnet3.png')
