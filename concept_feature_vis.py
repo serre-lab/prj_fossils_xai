@@ -418,12 +418,12 @@ def evaluate():
         batch_size=64,
     )
 
-    activations_and_patches = np.load("./activations/activations_patches_resnet2.npz")
-    activations = activations_and_patches["activations"]
-    patches = activations_and_patches["patches"]
-    patch_labels = activations_and_patches["labels"]
-    image_activations = activations_and_patches["image_activations"]
-    final_labels = activations_and_patches["class_labels"]
+    activations_and_patches = np.load("./activations/activations_patches_resnet5.npz")
+    activations = activations_and_patches["activations"][:100]
+    patches = activations_and_patches["patches"][:100]
+    patch_labels = activations_and_patches["labels"][:100]
+    image_activations = activations_and_patches["image_activations"][:100]
+    final_labels = activations_and_patches["class_labels"][:100]
 
     print(f"All activations: {activations.shape[0]}")
     crops, crops_u, w = craft.activation_transform(activations, patches)
@@ -438,24 +438,41 @@ def evaluate():
     most_important_concepts = helpers.plot_new_histogram(
         importances, histogram_dir, 108, 20
     )
+    mic = most_important_concepts[0]
+    best_crops_ids = np.argsort(crops_u[:, mic])[::-1]
+    best_crops_labels = np.array(patch_labels)[best_crops_ids]
+    best_crops = np.array(activations)[best_crops_ids]
 
-    helpers.save_classwise_crops(
-        most_important_concepts,
-        importances,
-        crops_u,
-        crops,
-        patch_labels,
-        save_crops,
-        108,
-        25,
-    )
+    class_0_crops = best_crops[best_crops_labels == 6]
+
+    total_samples = len(class_0_crops)
+
+    percentage = 0.2
+    positive_examples = class_0_crops[: int(total_samples * percentage)]
+    random_examples = class_0_crops[int(total_samples * percentage) :]
+
+    from xplique.concepts import Cav
+
+    cav_renderer = Cav(model, "activation", classifier="SGD", test_fraction=0.1)
+    cav = cav_renderer(positive_examples, random_examples)
+
+    import ipdb
+
+    ipdb.set_trace()
+    from xplique.features_visualizations import Objective
+    from xplique.features_visualizations import maco
+    from xplique.plot import plot_maco
+
+    logits_obj = Objective.direction(model, -2, cav)
+    image, alpha = maco(logits_obj)
+    plot_maco(image, alpha)
 
 
 if __name__ == "__main__":
-    # model_path = "./models/BEITmodel-9.h5"
-    model_path = "./models/resnet_model-9.h5"
-    save_crops = "./crops/fossils_leaves_crops/exp1_Resnet_128_142_trial2"
-    histogram_dir = "./histogram/exp1_Resnet_128_142_trial2"
+    # model_path = "./models/model-14-resnet.h5"
+    model_path = "./models/model-14-resnet101.h5"
+    save_crops = "./crops/fossils_leaves_crops/exp1_Resnet_128_142_trial10"
+    histogram_dir = "./histogram/exp1_Resnet_128_142_trial10"
 
     # model, g, h = helpers.get_model(model_path)
     model, g, h = helpers.get_resnet_model(model_path)

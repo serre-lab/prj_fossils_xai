@@ -158,7 +158,7 @@ class Craft(BaseConceptExtractor):
         )
 
         return activations, patches
-    
+
     def fit2(self, inputs: np.ndarray, labels: np.ndarray):
         """
         Fit the Craft model to the input data.
@@ -184,10 +184,10 @@ class Craft(BaseConceptExtractor):
             rates=[1, 1, 1, 1],
             padding="VALID",
         )
-        x,y = patches.shape[1], patches.shape[2]
-        num_patches = x*y
+        x, y = patches.shape[1], patches.shape[2]
+        num_patches = x * y
         patches = tf.reshape(patches, (-1, self.patch_size, self.patch_size, 3))
-        labels = tf.repeat(labels, num_patches, axis = 0)
+        labels = tf.repeat(labels, num_patches, axis=0)
         # encode the patches and obtain the activations
         input_width, input_height = inputs.shape[1], inputs.shape[2]
         activations = self.input_to_latent.predict(
@@ -262,7 +262,7 @@ class Craft(BaseConceptExtractor):
         U = np.reshape(U, (*original_shape, U.shape[-1]))
 
         return tf.cast(U, tf.float32)
-    
+
     def new_transform(self, activations: np.ndarray = None):
         """Transforms the inputs data into its concept representation.
 
@@ -358,6 +358,8 @@ class Craft(BaseConceptExtractor):
 
         return np.mean(importances, 0)
 
+    def gradient_estimate_importance(self, concepts, dictionary, logit, model):
+        pass
 
     def new_estimate_importance(self, activations, class_labels, nb_design=32):
         """

@@ -27,149 +27,150 @@ import cv2
 # import ipdb
 
 class_names = {
-"Fabaceae" :5,
-"Annonaceae" :26,
-"Lauraceae" :8,
-"Rubiaceae" :116,
-"Euphorbiaceae" :63,
-"Thymelaeaceae" :133,
-"Polygalaceae" :110,
-"Rhamnaceae" :12,
-"Fagaceae" :6,
-"Sapindaceae" :15,
-"Sapotaceae" :120,
-"Apiaceae" :27,
-"Berberidaceae" :1,
-"Ericaceae" :61,
-"Theaceae" :132,
-"Lardizabalaceae" :75,
-"Malvaceae" :83,
-"Acanthaceae" :21,
-"Rosaceae" :13,
-"Anacardiaceae" :0,
-"Cornaceae" :52,
-"Myristicaceae" :90,
-"Meliaceae" :9,
-"Hamamelidaceae" :68,
-"Cupressaceae" :3,
-"Ebenaceae" :58,
-"Myrtaceae" :10,
-"Apocynaceae" :28,
-"Salicaceae" :14,
-"Passifloraceae" :101,
-"Ranunculaceae" :114,
-"Celastraceae" :45,
-"Ulmaceae" :16,
-"Pittosporaceae" :107,
-"Asteraceae" :32,
-"Piperaceae" :106,
-"Betulaceae" :2,
-"Juglandaceae" :7,
-"Winteraceae" :138,
-"Menispermaceae" :86,
-"Cunoniaceae" :55,
-"Rutaceae" :117,
-"Combretaceae" :49,
-"Elaeocarpaceae" :60,
-"Oleaceae" :96,
-"Proteaceae" :113,
-"Capparaceae" :42,
-"Aquifoliaceae" :29,
-"Gnetaceae" :67,
-"Phyllanthaceae" :104,
-"Bignoniaceae" :33,
-"Melastomataceae" :85,
-"Styracaceae" :130,
-"Rhizophoraceae" :115,
-"Lecythidaceae" :76,
-"Ochnaceae" :94,
-"Schisandraceae" :123,
-"Chloranthaceae" :46,
-"Lamiaceae" :74,
-"Onagraceae" :97,
-"Araliaceae" :30,
-"Moraceae" :88,
-"Malpighiaceae" :82,
-"Caprifoliaceae" :43,
-"Icacinaceae" :71,
-"Lythraceae" :80,
-"Saxifragaceae" :122,
-"Pinaceae" :11,
-"Chrysobalanaceae" :47,
-"Dilleniaceae" :56,
-"Calophyllaceae" :37,
-"Loranthaceae" :79,
-"Penaeaceae" :102,
-"Polemoniaceae" :109,
-"Actinidiaceae" :23,
-"Magnoliaceae" :81,
-"Buxaceae" :36,
-"Dryopteridaceae" :4,
-"Connaraceae" :50,
-"Crassulaceae" :53,
-"Hypericaceae" :70,
-"Urticaceae" :134,
-"Nothofagaceae" :91,
-"Nyssaceae" :93,
-"Achariaceae" :22,
-"Burseraceae" :35,
-"Symplocaceae" :131,
-"Loganiaceae" :78,
-"Dipterocarpaceae" :57,
-"Garryaceae" :64,
-"Campanulaceae" :39,
-"Vitaceae" :18,
-"Viburnaceae" :17,
-"Humiriaceae" :69,
-"Sabiaceae" :118,
-"Altingiaceae" :24,
-"Pentaphylacaceae" :103,
-"Polygonaceae" :111,
-"Simaroubaceae" :125,
-"Cardiopteridaceae" :44,
-"Violaceae" :136,
-"Coriariaceae" :51,
-"Platanaceae" :108,
-"Amaranthaceae" :25,
-"Geraniaceae" :65,
-"Monimiaceae" :87,
-"Santalaceae" :119,
-"Olacaceae" :95,
-"Iteaceae" :72,
-"Cannabaceae" :41,
-"Linaceae" :77,
-"Clusiaceae" :48,
-"Cucurbitaceae" :54,
-"Elaeagnaceae" :59,
-"Zygophyllaceae" :139,
-"Boraginaceae" :34,
-"Stemonuraceae" :129,
-"Gesneriaceae" :66,
-"Escalloniaceae" :62,
-"Phytolaccaceae" :105,
-"Oxalidaceae" :99,
-"Sarcolaenaceae" :121,
-"Verbenaceae" :135,
-"Staphyleaceae" :128,
-"Canellaceae" :40,
-"Aristolochiaceae" :31,
-"Myricaceae" :89,
-"Primulaceae" :112,
-"Marantaceae" :84,
-"Paracryphiaceae" :100,
-"Scrophulariaceae" :124,
-"Solanaceae" :127,
-"Smilacaceae" :126,
-"Ixonanthaceae" :73,
-"Nyctaginaceae" :92,
-"Vochysiaceae" :137,
-"Calycanthaceae" :38,
-"Opiliaceae" :98,
-"Taxaceae" :22,
-"Araceae" :19}
+    "Fabaceae": 5,
+    "Annonaceae": 26,
+    "Lauraceae": 8,
+    "Rubiaceae": 116,
+    "Euphorbiaceae": 63,
+    "Thymelaeaceae": 133,
+    "Polygalaceae": 110,
+    "Rhamnaceae": 12,
+    "Fagaceae": 6,
+    "Sapindaceae": 15,
+    "Sapotaceae": 120,
+    "Apiaceae": 27,
+    "Berberidaceae": 1,
+    "Ericaceae": 61,
+    "Theaceae": 132,
+    "Lardizabalaceae": 75,
+    "Malvaceae": 83,
+    "Acanthaceae": 21,
+    "Rosaceae": 13,
+    "Anacardiaceae": 0,
+    "Cornaceae": 52,
+    "Myristicaceae": 90,
+    "Meliaceae": 9,
+    "Hamamelidaceae": 68,
+    "Cupressaceae": 3,
+    "Ebenaceae": 58,
+    "Myrtaceae": 10,
+    "Apocynaceae": 28,
+    "Salicaceae": 14,
+    "Passifloraceae": 101,
+    "Ranunculaceae": 114,
+    "Celastraceae": 45,
+    "Ulmaceae": 16,
+    "Pittosporaceae": 107,
+    "Asteraceae": 32,
+    "Piperaceae": 106,
+    "Betulaceae": 2,
+    "Juglandaceae": 7,
+    "Winteraceae": 138,
+    "Menispermaceae": 86,
+    "Cunoniaceae": 55,
+    "Rutaceae": 117,
+    "Combretaceae": 49,
+    "Elaeocarpaceae": 60,
+    "Oleaceae": 96,
+    "Proteaceae": 113,
+    "Capparaceae": 42,
+    "Aquifoliaceae": 29,
+    "Gnetaceae": 67,
+    "Phyllanthaceae": 104,
+    "Bignoniaceae": 33,
+    "Melastomataceae": 85,
+    "Styracaceae": 130,
+    "Rhizophoraceae": 115,
+    "Lecythidaceae": 76,
+    "Ochnaceae": 94,
+    "Schisandraceae": 123,
+    "Chloranthaceae": 46,
+    "Lamiaceae": 74,
+    "Onagraceae": 97,
+    "Araliaceae": 30,
+    "Moraceae": 88,
+    "Malpighiaceae": 82,
+    "Caprifoliaceae": 43,
+    "Icacinaceae": 71,
+    "Lythraceae": 80,
+    "Saxifragaceae": 122,
+    "Pinaceae": 11,
+    "Chrysobalanaceae": 47,
+    "Dilleniaceae": 56,
+    "Calophyllaceae": 37,
+    "Loranthaceae": 79,
+    "Penaeaceae": 102,
+    "Polemoniaceae": 109,
+    "Actinidiaceae": 23,
+    "Magnoliaceae": 81,
+    "Buxaceae": 36,
+    "Dryopteridaceae": 4,
+    "Connaraceae": 50,
+    "Crassulaceae": 53,
+    "Hypericaceae": 70,
+    "Urticaceae": 134,
+    "Nothofagaceae": 91,
+    "Nyssaceae": 93,
+    "Achariaceae": 22,
+    "Burseraceae": 35,
+    "Symplocaceae": 131,
+    "Loganiaceae": 78,
+    "Dipterocarpaceae": 57,
+    "Garryaceae": 64,
+    "Campanulaceae": 39,
+    "Vitaceae": 18,
+    "Viburnaceae": 17,
+    "Humiriaceae": 69,
+    "Sabiaceae": 118,
+    "Altingiaceae": 24,
+    "Pentaphylacaceae": 103,
+    "Polygonaceae": 111,
+    "Simaroubaceae": 125,
+    "Cardiopteridaceae": 44,
+    "Violaceae": 136,
+    "Coriariaceae": 51,
+    "Platanaceae": 108,
+    "Amaranthaceae": 25,
+    "Geraniaceae": 65,
+    "Monimiaceae": 87,
+    "Santalaceae": 119,
+    "Olacaceae": 95,
+    "Iteaceae": 72,
+    "Cannabaceae": 41,
+    "Linaceae": 77,
+    "Clusiaceae": 48,
+    "Cucurbitaceae": 54,
+    "Elaeagnaceae": 59,
+    "Zygophyllaceae": 139,
+    "Boraginaceae": 34,
+    "Stemonuraceae": 129,
+    "Gesneriaceae": 66,
+    "Escalloniaceae": 62,
+    "Phytolaccaceae": 105,
+    "Oxalidaceae": 99,
+    "Sarcolaenaceae": 121,
+    "Verbenaceae": 135,
+    "Staphyleaceae": 128,
+    "Canellaceae": 40,
+    "Aristolochiaceae": 31,
+    "Myricaceae": 89,
+    "Primulaceae": 112,
+    "Marantaceae": 84,
+    "Paracryphiaceae": 100,
+    "Scrophulariaceae": 124,
+    "Solanaceae": 127,
+    "Smilacaceae": 126,
+    "Ixonanthaceae": 73,
+    "Nyctaginaceae": 92,
+    "Vochysiaceae": 137,
+    "Calycanthaceae": 38,
+    "Opiliaceae": 98,
+    "Taxaceae": 22,
+    "Araceae": 19,
+}
+
 
 def get_model(model_path):
-    
     # backbone = beit.BeitBasePatch16(input_shape = (384,384,3), pretrained = "imagenet21k-ft1k")
     cce = tf.keras.losses.categorical_crossentropy
     model = keras.models.load_model(model_path, custom_objects={"cce": cce})
@@ -181,41 +182,41 @@ def get_model(model_path):
     return model, g, h
 
 
-def get_resnet(base_arch='Nasnet',weights='imagenet',input_shape=(600,600,3),classes=64500):
-  if base_arch == 'Nasnet':
-      base_model = tf.keras.applications.NASNetLarge(
-                                    input_shape=input_shape,
-                                  include_top=False,
-                                  weights=weights,
-                                  input_tensor=None,
-                                  pooling=None,
-                          )
-  elif base_arch == 'Resnet50v2':
-      base_model = tf.keras.applications.ResNet50V2(weights=weights,
-                                  include_top=False,
-                                  pooling='avg',
-                                  input_shape=input_shape)
-  elif base_arch == 'Resnet101':
-      base_model = tf.keras.applications.ResNet101(weights=weights,
-                                  include_top=False,
-                                  pooling='avg',
-                                  input_shape=input_shape)
-#   import ipdb;ipdb.set_trace()
-  model = tf.keras.Sequential([
-      base_model,
-      tf.keras.layers.Dense(classes,activation='softmax')
-  ])
+def get_resnet(
+    base_arch="Nasnet", weights="imagenet", input_shape=(600, 600, 3), classes=64500
+):
+    if base_arch == "Nasnet":
+        base_model = tf.keras.applications.NASNetLarge(
+            input_shape=input_shape,
+            include_top=False,
+            weights=weights,
+            input_tensor=None,
+            pooling=None,
+        )
+    elif base_arch == "Resnet50v2":
+        base_model = tf.keras.applications.ResNet50V2(
+            weights=weights, include_top=False, pooling="avg", input_shape=input_shape
+        )
+    elif base_arch == "Resnet101":
+        base_model = tf.keras.applications.ResNet101(
+            weights=weights, include_top=False, pooling="avg", input_shape=input_shape
+        )
+    #   import ipdb;ipdb.set_trace()
+    model = tf.keras.Sequential(
+        [base_model, tf.keras.layers.Dense(classes, activation="softmax")]
+    )
 
-  return base_model, model
+    return base_model, model
 
-def  get_resnet_model(model_path):
-    import ipdb;ipdb.set_trace()
+
+def get_resnet_model(model_path):
+    # import ipdb;ipdb.set_trace()
     cce = tf.keras.losses.categorical_crossentropy
-    model = keras.models.load_model(model_path, custom_objects = {"cce":cce})
-    g = keras.Model(model.input, model.layers[2].output)
+    model = keras.models.load_model(model_path, custom_objects={"cce": cce})
+    g = keras.Model(model.input, model.layers[-3].output)
     # out = tf.keras.layers.Activation('relu')(g_.output)
     # g = tf.keras.Model(model.input, out)
-    h = keras.Model(model.layers[3].input, model.layers[-1].output)
+    h = keras.Model(model.layers[-1].input, model.layers[-1].output)
     return model, g, h
 
 
@@ -351,7 +352,7 @@ def plot_histogram(importances, cid, class_names, histogram_dir):
 def plot_new_histogram(importances, histogram_dir, b, n_concepts=10):
     if not os.path.exists(histogram_dir):
         os.makedirs(histogram_dir)
-    plt.figure(figsize = (20,10))
+    plt.figure(figsize=(20, 10))
     plt.bar(range(len(importances)), importances)
     # plt.xticks(range(len(importances)))
     plt.title("Concept Importance")
@@ -408,18 +409,27 @@ def save_crops(
             plt.show()
             print("\n\n")
 
+
 def save_classwise_crops(
-    most_important_concepts, importances, crops_u, crops, crops_labels, save_dir, batch, nb_crops
+    most_important_concepts,
+    importances,
+    crops_u,
+    crops,
+    crops_labels,
+    save_dir,
+    batch,
+    nb_crops,
 ):
     for c_id in most_important_concepts:
-        if importances[c_id]==0.0:
-            print('Terminating....! concept importance 0.0 found')
+        if importances[c_id] == 0.0:
+            print("Terminating....! concept importance 0.0 found")
             break
-        
+
         output_dir = os.path.join(
-        save_dir, f"all_images_v2_till_batch_{batch}/concept_{c_id}_importance_{importances[c_id]}"
+            save_dir,
+            f"all_images_v2_till_batch_{batch}/concept_{c_id}_importance_{importances[c_id]}",
         )
-        
+
         os.makedirs(
             output_dir,
             exist_ok=True,
@@ -429,44 +439,54 @@ def save_classwise_crops(
         best_crops = np.array(crops)[best_crops_ids]
         print("Concept", c_id, " has an importance value of ", importances[c_id])
 
-
         for cls_name, idx in class_names.items():
-            best_class_crops = best_crops[crops_labels==idx] 
-            if len(best_class_crops)==0:
+            best_class_crops = best_crops[best_crops_labels == idx]
+            if len(best_class_crops) == 0:
                 continue
-            class_dir = os.path.join(output_dir, f'{cls_name}-{idx}')
+            class_dir = os.path.join(output_dir, f"{cls_name}-{idx}")
             os.makedirs(
-            class_dir,
-            exist_ok=True,
+                class_dir,
+                exist_ok=True,
             )
             niter = best_class_crops.shape[0] // nb_crops
             niter = 50 if niter > 50 else niter
-            x = nb_crops//5
+            x = nb_crops // 5
 
-            if niter==0:
-                canvas_height = x * 128  # Assuming each crop is roughly 100 pixels in height
-                canvas_width = 5 * 128  # Assuming each crop is roughly 100 pixels in width
-                canvas = np.ones((canvas_width, canvas_height, 3))*255
+            if niter == 0:
+                canvas_height = (
+                    x * 128
+                )  # Assuming each crop is roughly 100 pixels in height
+                canvas_width = (
+                    5 * 128
+                )  # Assuming each crop is roughly 100 pixels in width
+                canvas = np.ones((canvas_width, canvas_height, 3)) * 255
 
                 for i in range(nb_crops):
                     row = i // 5
                     col = i % 5
-                    if i==best_class_crops.shape[0]:break
+                    if i == best_class_crops.shape[0]:
+                        break
                     crop = best_class_crops[i]
                     crop_height, crop_width, _ = crop.shape
                     start_y = row * 128
                     start_x = col * 128
                     crop = cv2.cvtColor(crop, cv2.COLOR_RGB2BGR)
-                    canvas[start_y:start_y + crop_height, start_x:start_x + crop_width] = crop*255
+                    canvas[
+                        start_y : start_y + crop_height, start_x : start_x + crop_width
+                    ] = (crop * 255)
                 # Save the image using OpenCV
                 # import ipdb;ipdb.set_trace()
                 output_path = os.path.join(class_dir, f"{0}.png")
                 cv2.imwrite(output_path, canvas)
 
             for j in range(niter):
-                canvas_height = x * 128  # Assuming each crop is roughly 100 pixels in height
-                canvas_width = 5 * 128  # Assuming each crop is roughly 100 pixels in width
-                canvas = np.ones((canvas_width, canvas_height, 3))*255
+                canvas_height = (
+                    x * 128
+                )  # Assuming each crop is roughly 100 pixels in height
+                canvas_width = (
+                    5 * 128
+                )  # Assuming each crop is roughly 100 pixels in width
+                canvas = np.ones((canvas_width, canvas_height, 3)) * 255
 
                 for i in range(nb_crops):
                     row = i // 5
@@ -476,26 +496,35 @@ def save_classwise_crops(
                     start_y = row * 128
                     start_x = col * 128
                     crop = cv2.cvtColor(crop, cv2.COLOR_RGB2BGR)
-                    canvas[start_y:start_y + crop_height, start_x:start_x + crop_width] = crop*255
+                    canvas[
+                        start_y : start_y + crop_height, start_x : start_x + crop_width
+                    ] = (crop * 255)
                 # Save the image using OpenCV
                 # import ipdb;ipdb.set_trace()
                 output_path = os.path.join(class_dir, f"{j}.png")
                 cv2.imwrite(output_path, canvas)
 
-    
 
 def save_new_crops(
-    most_important_concepts, importances, crops_u, crops, crops_labels, save_dir, batch, nb_crops
+    most_important_concepts,
+    importances,
+    crops_u,
+    crops,
+    crops_labels,
+    save_dir,
+    batch,
+    nb_crops,
 ):
     for c_id in most_important_concepts:
-        if importances[c_id]==0.0:
-            print('Terminating....! concept importance 0.0 found')
+        if importances[c_id] == 0.0:
+            print("Terminating....! concept importance 0.0 found")
             break
-        
+
         output_dir = os.path.join(
-        save_dir, f"all_images_v2_till_batch_{batch}/concept_{c_id}_importance_{importances[c_id]}"
+            save_dir,
+            f"all_images_v2_till_batch_{batch}/concept_{c_id}_importance_{importances[c_id]}",
         )
-        
+
         os.makedirs(
             output_dir,
             exist_ok=True,
@@ -506,26 +535,30 @@ def save_new_crops(
 
         niter = crops_u.shape[0] // nb_crops
         niter = 50 if niter > 50 else niter
-        x = nb_crops//5
+        x = nb_crops // 5
 
         for j in range(niter):
-          canvas_height = x * 128  # Assuming each crop is roughly 100 pixels in height
-          canvas_width = 5 * 128  # Assuming each crop is roughly 100 pixels in width
-          canvas = np.zeros((canvas_width, canvas_height, 3))
+            canvas_height = (
+                x * 128
+            )  # Assuming each crop is roughly 100 pixels in height
+            canvas_width = 5 * 128  # Assuming each crop is roughly 100 pixels in width
+            canvas = np.zeros((canvas_width, canvas_height, 3))
 
-          for i in range(nb_crops):
-              row = i // 5
-              col = i % 5
-              crop = best_crops[j * nb_crops + i]
-              crop_height, crop_width, _ = crop.shape
-              start_y = row * 128
-              start_x = col * 128
-              crop = cv2.cvtColor(crop, cv2.COLOR_RGB2BGR)
-              canvas[start_y:start_y + crop_height, start_x:start_x + crop_width] = crop*255
-          # Save the image using OpenCV
-          # import ipdb;ipdb.set_trace()
-          output_path = os.path.join(output_dir, f"{j}.png")
-          cv2.imwrite(output_path, canvas)
+            for i in range(nb_crops):
+                row = i // 5
+                col = i % 5
+                crop = best_crops[j * nb_crops + i]
+                crop_height, crop_width, _ = crop.shape
+                start_y = row * 128
+                start_x = col * 128
+                crop = cv2.cvtColor(crop, cv2.COLOR_RGB2BGR)
+                canvas[
+                    start_y : start_y + crop_height, start_x : start_x + crop_width
+                ] = (crop * 255)
+            # Save the image using OpenCV
+            # import ipdb;ipdb.set_trace()
+            output_path = os.path.join(output_dir, f"{j}.png")
+            cv2.imwrite(output_path, canvas)
 
         # for j in range(niter):
         #     best_crops_norm = [

@@ -256,7 +256,9 @@ class Craft(BaseConceptExtractor):
 
             for u in U:
                 u_perturbated = u[None, :] * masks
-                import ipdb;ipdb.set_trace()
+                import ipdb
+
+                ipdb.set_trace()
                 a_perturbated = u_perturbated @ self.W
 
                 y_pred = self.latent_to_logit.predict(

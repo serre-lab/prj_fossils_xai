@@ -252,7 +252,6 @@ def one_step_inference(x):
         ]
         mask = F.interpolate(mask, (original_size[0], original_size[1]))
 
-
     return mask
 
 
@@ -303,11 +302,11 @@ def segmentation_sam(batch_input, batch_labels, batch_domain, batch_number):
         samples.append(sample)
         labels.append(tf.math.argmax(y))
         domains.append(tf.repeat([d], 4, axis=0))
-      
+
         x = np.hstack(sample)
         x = cv2.cvtColor(x, cv2.COLOR_RGB2BGR)
-        cv2.imwrite(f'./sam_masks/image_{start}.png', x*255)
-        start+=1
+        cv2.imwrite(f"./sam_masks/image_{start}.png", x * 255)
+        start += 1
     return (
         tf.stack(samples, axis=0),
         tf.stack(labels, axis=0),
